@@ -5,7 +5,7 @@ LICENSE text eol=crlf
 README.md text eol=crlf
 *.diff text eof=crlf
 *.doc text eof=crlf
-*.pat text eof=crlf
+*.pat text eof=crlf linguist-language=DIGITAL Command Language
 *.txt text eof=crlf
 *.tsk binary
 *.jpeg binary
