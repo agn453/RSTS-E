@@ -8,6 +8,7 @@ README.md text eol=crlf
 *.pat text eof=crlf
 *.txt text eof=crlf
 *.tsk binary
+*.jpeg binary
 *.txt text eof=crlf
 *.mac text eol=crlf linguist-language=Assembly
 *.com text eol=crlf
