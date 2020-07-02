@@ -1,0 +1,77 @@
+NSP1.PAT is a patch for RSTS V10.1 for DECnet/E to improve dataflow
+under SIMH - see Paul Koning's e-mail to the simh mailing list dated
+03-May-2016
+
+> On Apr 19, 2016, at 2:46 PM, Paul Koning <paulkoning@comcast.net> wrote:
+>
+> With help from Mark Pizzolato, I've been looking at why RSTS (DECnet/E)
+> operates so slowly when it's dealing with one way transfers.
+> This is independent of protocol and datalink type; it shows up very clearly
+> in NFT (any kind of file transfer or directory listing) and also in NET
+> (Set Host).  The symptom is that data comes across in fairly short bursts,
+> separated by about a second of pause.
+>
+> This turns out to be an interaction between the DECnet/E queueing rules
+> and the very fast operation of SIMH on modern hosts. DECnet/E will queue
+> up to some small number of NSP segments for any given connection, set by
+> the executor parameter "data transmit queue max".  The default value is
+> 4 or 5, but it can be set higher, and that helps some.
+>
+> The trouble is this: if you have a one way data flow, for example NFT or
+> FAL doing a copy, the sending program simply fires off a sequence of
+> send-packet operations until it gets a "queue full" reject from the kernel.
+> At that point it delays, but the delay is one second since sleep operations
+> have one second granularity.  The other end acks all that data quite
+> promptly, but since the emulation runs so fast, the whole transmit queue
+> can fill up before the ack from the other end arrives, so the queue full
+> condition occurs, then a one second delay, then the process starts over.
+>
+> This sort of thing doesn't happen on request/response exchanges; for example
+> the NCP command LOOP NODE runs at top speed because traffic is going both
+> ways.
+>
+> I tried fiddling with the data queue limit to see if increasing it would
+> help.  It seems to, but it's not sufficient.  What does work is a larger
+> queue limit (32 looks good) combined with CPU throttling to slow things
+> down a bit.  I used "set throttle 2000/1" (which produces a 1 ms delay
+> every 2000 instructions, i.e., roughly 2 MIPS processing speed which is at
+> the high end of what real PDP-11s can do).  Those two changes combined
+> make file transfer run smoothly and fast.
+>
+> Ideally DECnet/E should cancel the program sleep when the queue transitions
+> from full to not-full, but that's not part of the existing logic (at least
+> not unless the program explicitly asks for "link status notifications").
+> I could probably add that; the question is how large a change it is --
+> does it exceed what's feasible for a patch.  I may still do that, but at
+> least for now the above should be helpful.
+
+Followup: I created a patch that implements the "wake up when the queue goes
+not-full".  Or more precisely, it wakes up the process whenever an ack is
+received; that covers the probem case and probably doesn't create many other
+wakeups since the program is unlikely to be sleeping otherwise.
+
+The attached patch script does the job.  This is for RSTS V10.1.  I will take a
+look at RSTS 9.6; the patch is unlikely to apply there (offsets probably don't
+match) but the concept will apply there too.  I don't have other DECnet/E
+versions, let alone source listings which is what's needed to create the patch.
+
+With this patch, you can run at full emulation speed, with the default queue
+limit (5).  In fact, I would recommend setting that limit; if you make the
+queue limit significantly larger, the patch doesn't help and things are still
+slow.  I suspect that comes from overrunning the queue limits at the receiving
+end.  (Note that DECnet/E leaves the flow control choice to the application,
+and most use "no" flow control, i.e., on/off only which isn't effective if the
+sender can overrun the buffer pool of the receiver.)
+
+To apply the patch, give it to ONLPAT and select the monitor SIL (just <CR>
+will give  you the installed one).  Or you can do it with the PATCH option at
+boot time, in that case enter the information manually.  The manual will spell
+this out some more, I expect.
+
+I have no idea if this issue can appear on real PDP-11 systems.  Possibly, if
+you have a fast CPU, a fast network (Ethernet) and enough latency to make the
+issue visible (more than a few milliseconds but way under a second).  In any
+case, it's unlikely to hurt, and it clearly helps a great deal in emulated
+systems.
+
+        paul

@@ -1,0 +1,146 @@
+*** ./fitb.bas	Thu Jul  2 07:57:42 2020
+--- ./fita.bas	Thu Jul  2 07:57:35 2020
+***************
+*** 1,7 ****
+  2!		PROGRAM		: FIT.BAS
+  5!		VERSION		: V10.1
+! 6!		EDIT		: B
+! 7!		EDIT DATE	: 03-APR-20
+  10	EXTEND		! USE BASIC-PLUS EXTEND MODE
+  11!	&
+    !	&
+--- 1,7 ----
+  2!		PROGRAM		: FIT.BAS
+  5!		VERSION		: V10.1
+! 6!		EDIT		: A
+! 7!		EDIT DATE	: 10-MAY-91
+  10	EXTEND		! USE BASIC-PLUS EXTEND MODE
+  11!	&
+    !	&
+***************
+*** 32,45 ****
+  20	! &
+  	! &
+  	! &
+! 	!	M O D I F I C A T I O N    H I S T O R Y &
+  	! &
+  
+  21	! VER/ED	EDIT DATE	REASON &
+  	! &
+  	! V9.0-08	08-OCT-84	(DP) Check if user has TMPPRV priv &
+  	! V9.0-10	25-Jan-85	(PRL) Fix help file loc -> HELP$: &
+- 	! V10.1-B	03-Apr-20	(AGN) Y2K for RT-11 date word &
+  	&
+  100	! &
+  	! &
+--- 32,44 ----
+  20	! &
+  	! &
+  	! &
+! 	!	M O D I F I C A T I O N    H I S T O R T &
+  	! &
+  
+  21	! VER/ED	EDIT DATE	REASON &
+  	! &
+  	! V9.0-08	08-OCT-84	(DP) Check if user has TMPPRV priv &
+  	! V9.0-10	25-Jan-85	(PRL) Fix help file loc -> HELP$: &
+  	&
+  100	! &
+  	! &
+***************
+*** 137,143 ****
+  		! SET UP STANDARD ERROR TRAP. &
+  		! DROP PRIVILEGES TEMPORARILY. &
+  
+! 1010	IDENT.STG$="V10.1-B" &
+  		! SET UP VERSION/EDIT FOR HEADER. &
+  
+  1030	PRINT FNRET$;"FIT";CHR$(9%);IDENT.STG$;CHR$(9%);FNE$(0%) &
+--- 136,142 ----
+  		! SET UP STANDARD ERROR TRAP. &
+  		! DROP PRIVILEGES TEMPORARILY. &
+  
+! 1010	IDENT.STG$="V10.1-A" &
+  		! SET UP VERSION/EDIT FOR HEADER. &
+  
+  1030	PRINT FNRET$;"FIT";CHR$(9%);IDENT.STG$;CHR$(9%);FNE$(0%) &
+***************
+*** 2186,2213 ****
+  	DEF* FNRT11.DATE%(T0%) &
+  	\ T0$=DATE$(T0%) &
+  	\ IF INSTR(1%,T0$,"-") THEN &
+- 		Y2%=VAL(RIGHT(T0$,8%)) &
+- 	  ELSE Y2%=VAL(LEFT(T0$,2%)) &
+- 	  ! &
+- 	  ! Year needs to be split for Y2K &
+- 
+- 15211	IF Y2% < 72% THEN &
+- 		Y2%=Y2%+100% &
+- 
+- 15212	Y2%=Y2%-72% &
+- 	\ Y3%=0% &
+- 	\ IF Y2% > 31% THEN &
+- 		Y2%=((Y2% AND 96%)*512%) OR (Y2% AND 31%) &
+- 
+- 15215	IF INSTR(1%,T0$,"-") THEN &
+  		FNRT11.DATE%= &
+  		((INSTR(1%,"Xanebarprayunulugepctovec",MID(T0$,5%,2%))/2%)*32% &
+  		+VAL(LEFT(T0$,2%)))*32% &
+! 		+Y2% &
+  	  ELSE	FNRT11.DATE%= &
+  		(VAL(MID(T0$,4%,2%))*32% &
+  		+VAL(RIGHT(T0$,7%)))*32% &
+! 		+Y2% &
+  		! &
+  		! GET THE RSTS DATE STRING FOR DATE T0%. &
+  		! PACK THE STRING INTO RT11 INTEGER DATE FORMAT. &
+--- 2185,2198 ----
+  	DEF* FNRT11.DATE%(T0%) &
+  	\ T0$=DATE$(T0%) &
+  	\ IF INSTR(1%,T0$,"-") THEN &
+  		FNRT11.DATE%= &
+  		((INSTR(1%,"Xanebarprayunulugepctovec",MID(T0$,5%,2%))/2%)*32% &
+  		+VAL(LEFT(T0$,2%)))*32% &
+! 		+VAL(RIGHT(T0$,8%))-72% &
+  	  ELSE	FNRT11.DATE%= &
+  		(VAL(MID(T0$,4%,2%))*32% &
+  		+VAL(RIGHT(T0$,7%)))*32% &
+! 		+VAL(LEFT(T0$,2%))-72% &
+  		! &
+  		! GET THE RSTS DATE STRING FOR DATE T0%. &
+  		! PACK THE STRING INTO RT11 INTEGER DATE FORMAT. &
+***************
+*** 2216,2223 ****
+  		!     0-4	YEAR SINCE 1972. &
+  		!     5-9	DAY OF MONTH. &
+  		!    10-14	MONTH. &
+! 		!    14-15      AGE (HIGH YEAR BITS). &
+! 		! (See AA-5286M-TC RT-11 V5.7 Release Notes E.1) &
+  
+  15220	FNEND &
+  		! END OF FNRT11.DATE%(T0%) &
+--- 2201,2207 ----
+  		!     0-4	YEAR SINCE 1972. &
+  		!     5-9	DAY OF MONTH. &
+  		!    10-14	MONTH. &
+! 		!      15	RESERVED. &
+  
+  15220	FNEND &
+  		! END OF FNRT11.DATE%(T0%) &
+***************
+*** 2242,2248 ****
+  	! RETURNS:	THE SPECIFIED DATE IN RSTS/E FORMAT. &
+  	! &
+  	DEF* FNRSTS.DATE%(T0%) &
+! 	\ YR%=(T0% AND 31%) OR ((T0%/512%) AND 96%) &
+  	\ DA%=T0%/32% AND 31% &
+  	\ MO%=T0%/1024% AND 15% &
+  	\ DA%=DA%+28%+VAL(MID("303232332323",T0%,1%)) FOR T0%=1% TO MO%-1% &
+--- 2226,2232 ----
+  	! RETURNS:	THE SPECIFIED DATE IN RSTS/E FORMAT. &
+  	! &
+  	DEF* FNRSTS.DATE%(T0%) &
+! 	\ YR%=T0% AND 31% &
+  	\ DA%=T0%/32% AND 31% &
+  	\ MO%=T0%/1024% AND 15% &
+  	\ DA%=DA%+28%+VAL(MID("303232332323",T0%,1%)) FOR T0%=1% TO MO%-1% &

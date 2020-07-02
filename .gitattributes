@@ -1,0 +1,16 @@
+# Default is to keep crlf line endings
+text=auto
+
+LICENSE text eol=crlf
+README.md text eol=crlf
+*.diff text eof=crlf
+*.doc text eof=crlf
+*.pat text eof=crlf
+*.txt text eof=crlf
+*.tsk binary
+*.txt text eof=crlf
+*.mac text eol=crlf linguist-language=Assembly
+*.com text eol=crlf
+*.obj binary
+*.zip binary
+*.pdf binary
