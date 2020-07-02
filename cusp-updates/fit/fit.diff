@@ -1,5 +1,5 @@
-*** ./fitb.bas	Thu Jul  2 07:57:42 2020
---- ./fita.bas	Thu Jul  2 07:57:35 2020
+*** FIT.BAS	Fri Jul  3 08:19:16 2020
+--- FIT.BAS-orig	Fri Jul  3 08:19:16 2020
 ***************
 *** 1,7 ****
   2!		PROGRAM		: FIT.BAS
@@ -110,19 +110,21 @@
   		! GET THE RSTS DATE STRING FOR DATE T0%. &
   		! PACK THE STRING INTO RT11 INTEGER DATE FORMAT. &
 ***************
-*** 2216,2223 ****
+*** 2215,2223 ****
+  		!     BITS	MEANING &
   		!     0-4	YEAR SINCE 1972. &
   		!     5-9	DAY OF MONTH. &
-  		!    10-14	MONTH. &
+! 		!    10-13	MONTH. &
 ! 		!    14-15      AGE (HIGH YEAR BITS). &
 ! 		! (See AA-5286M-TC RT-11 V5.7 Release Notes E.1) &
   
   15220	FNEND &
   		! END OF FNRT11.DATE%(T0%) &
---- 2201,2207 ----
+--- 2200,2207 ----
+  		!     BITS	MEANING &
   		!     0-4	YEAR SINCE 1972. &
   		!     5-9	DAY OF MONTH. &
-  		!    10-14	MONTH. &
+! 		!    10-14	MONTH. &
 ! 		!      15	RESERVED. &
   
   15220	FNEND &
