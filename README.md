@@ -20,7 +20,7 @@ image onto RSTS/E where the file dates should have been preserved by
 the FIT program.  They were instead wrapping to an earlier date.
 
 Part of the RT-11 Y2K updates to RT-11 V5.7 included
-using additional bits in the cqtime-of-day word to store dates beyond
+using additional bits in the time-of-day word to store dates beyond
 2003.  I've included the SPD
 [here](https://github.com/agn453/RSTS-E/blob/master/docs/AA-5286M-TC-RT-11-V5.7_System_Release_Notes_Oct1998.pdf)
 for reference (see Appendix E).
