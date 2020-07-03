@@ -20,7 +20,7 @@ image onto RSTS/E where the file dates should have been preserved by
 the FIT program.  They were instead wrapping to an earlier date.
 
 Part of the RT-11 Y2K updates to RT-11 V5.7 included
-using additional bits in the time-of-day word to store dates beyond
+using additional bits in the RT-11 date word to store dates beyond
 2003.  I've included the SPD
 [here](https://github.com/agn453/RSTS-E/blob/master/docs/AA-5286M-TC-RT-11-V5.7_System_Release_Notes_Oct1998.pdf)
 for reference (see Appendix E).
@@ -55,13 +55,13 @@ that you can apply with ONLPAT to the monitor SIL.  The
 file has the details.
 
 
-Installing DIBOL from the PATCH$ dirctory
------------------------------------------
+Installing DIBOL from the PATCH$ directory
+------------------------------------------
 
 Not related to updates - but may be useful/informative and nostalgic!
 
 I posted to the USENET newsgroup alt.sys.pdp11 recently describing
-how to install PDP-11 DIBOL V6.1-F from the PATCH$ directory,  A
+how to install PDP-11 DIBOL V6.1-F from the PATCH$ directory.  A
 full install kit exists on the system if you include patches when
 installing RSTS/E V10.1 - and you don't need original media to get it
 working.  The details are
@@ -100,7 +100,7 @@ that one day I might be able to get at!
 
 Not being overly enthusiastic about RSX-11D, I used my allotted time
 to run RSTS/E and develop various cross-assemblers for 8085/Z80/6502
-microcomputers.  It had VT05 console (20 lines of 72 columns) so I could
+microcomputers.  It had a VT05 console (20 lines of 72 columns) so I could
 do this without wasting paper!
 
 Also at this time, a campus-wide time-sharing system using a PDP-11/45
