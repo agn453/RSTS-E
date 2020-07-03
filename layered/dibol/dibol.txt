@@ -1,0 +1,50 @@
+On Monday, April 6, 2020 at 11:27:41 AM UTC+10, Tony Nicholson wrote:
+>
+> While re-reading the Release Notes for RSTS/E V10.1 I found a
+> reference to DIBOL suggesting that a full install kit is in the
+> PATCH$: directory as SY:[0,200]DBLKIT.BCK
+>
+> Indeed it is DIBOL V6.1-F for RSTS/E and it needs a bit of
+> trickery to install it without the media kit for an older
+> version of DIBOL.  Use something like the following as a
+> guide -
+>
+> $ create/account sy:[0,59]/name="DIBOL"
+> Non-user account _SY:[0,59] created at DCN 23091
+> $ copy patch$:dibol.com patch$:dibolo.com  ! preserve original
+> [File [0,200]DIBOL .COM copied to [0,200]DIBOLO.COM]
+> $ edit/edt/nocommand patch$:dibol.com !edit in line-mode
+>     1       $ !
+> *109
+>   109       $ !
+> *i
+>             $ _goto DIBOLV61    !force install from PATCH$:DBLKIT.BCK
+>             ^Z
+>   109       $ !
+> *290
+>   290       $ _DISMOUNT'UNL' 'LIB'              ! We no longer need the load device any longer
+> *s/$/$!/
+>   290       $! _DISMOUNT'UNL' 'LIB'             ! We no longer need the load device any longer
+> 1 substitution
+> *ex
+> SY:[0,200]DIBOL .COM 552 lines
+>
+> $ assign/sys sy:[1,2] syslib$$:
+> $ assign/sys sy:[1,1] lb$$:
+> $ @patch$:dibol DIBOL$ "Y" WORK$ HELP$ PATCH$: NL0:
+>
+> Answer the configuration questions (I chose YES to all, and IVP test output to KB: instead of LP:)
+>
+> At the completion of the IVP all is installed.
+>
+> Next just add lines to your [0,1]START.COM start-up file to
+> include DIBOL in your operating environment (just before
+> LOGINs are enabled) -
+>
+> $!AGN - added DIBOL V6.1-F (installed from the PATCH$ directory)
+> $ _write 0 f$time()+ "   Starting DIBOL"
+> $ _if f$search("DIBOL$:DIBV61.COM") .nes. "" then @DIBOL$:DIBV61.COM
+>
+> Enjoy!
+>
+> Tony

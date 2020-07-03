@@ -55,6 +55,19 @@ that you can apply with ONLPAT to the monitor SIL.  The
 file has the details.
 
 
+Installing DIBOL from the PATCH$ dirctory
+-----------------------------------------
+
+Not related to updates - but may be useful/informative and nostalgic!
+
+I posted to the USENET newsgroup alt.sys.pdp11 recently describing
+how to install PDP-11 DIBOL V6.1-F from the PATCH$ directory,  A
+full install kit exists on the system if you include patches when
+installing RSTS/E V10.1 - and you don't need original media to get it
+working.  The details are
+[here](https://github.com/agn453/RSTS-E/blob/master/layered/dibol/dibol.txt).
+
+
 On the look-out for other Y2K updates for RSTS/E
 ------------------------------------------------
 
