@@ -49,7 +49,7 @@ In addition, I have included one of his patches to improve Ethernet
 throughput with RSTS/E V10.1 under SIMH PDP11 emulation.
 
 You'll find this in the decnete subdirectory and a patch script
-[nsp1.pat](https://github.com/agn453/RSTS-E/blob/master/decnete/nsp1.txt)
+[nsp1.pat](https://github.com/agn453/RSTS-E/blob/master/decnete/nsp1.pat)
 that you can apply with ONLPAT to the monitor SIL.  The
 [nsp1.txt](https://github.com/agn453/RSTS-E/blob/master/decnete/nsp1.txt)
 file has the details.

@@ -47,7 +47,7 @@ under SIMH - see Paul Koning's e-mail to the simh mailing list dated
 
 Followup: I created a patch that implements the "wake up when the queue goes
 not-full".  Or more precisely, it wakes up the process whenever an ack is
-received; that covers the probem case and probably doesn't create many other
+received; that covers the problem case and probably doesn't create many other
 wakeups since the program is unlikely to be sleeping otherwise.
 
 The attached patch script does the job.  This is for RSTS V10.1.  I will take a
