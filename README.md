@@ -41,7 +41,12 @@ Paul Koning's DECnet/E Updates
 
 Paul Koning has some additional updates for DECnet/E for the
 Event Logger (EVTLOG.TSK) and for Async DDCMP support over a serial
-line.  You'll find these on his GitHub at
+line.
+
+[Update 25-Aug-2020] There's also a replacement NCP program to fix
+the "SHOW NODE" command.
+
+You'll find these on his GitHub at
 
 https://github.com/pkoning2/decstuff
 
