@@ -1,6 +1,5 @@
 # RSTS-E
-Updates, Information and Software for the PDP-11 RSTS/E V10.1 Operating System
-------------------------------------------------------------------------------
+## Updates, Information and Software for the PDP-11 RSTS/E V10.1 Operating System
 
 In this repository I aim to collect various software updates, information
 and software for the RSTS/E Operating System for the PDP-11.
@@ -12,8 +11,7 @@ Recently some source-kits became available on the bitsavers web site
 for RSTS/E V10.1 and I started investigations into fixing some Y2K issues
 that I had found while tinkering.
 
-FIT
----
+## FIT
 
 The first of these concerned transferring files from an RT-11 disk
 image onto RSTS/E where the file dates should have been preserved by
@@ -36,8 +34,7 @@ the AUXLIB$ (or SY:[0,14]) directory and copy the update (with <232>
 mode protection and RSX run-time system) in place.
 
 
-Paul Koning's DECnet/E Updates
-------------------------------
+## Paul Koning's DECnet/E Updates
 
 Paul Koning has some additional updates for DECnet/E for the
 Event Logger (EVTLOG.TSK) and for Async DDCMP support over a serial
@@ -60,8 +57,7 @@ that you can apply with ONLPAT to the monitor SIL.  The
 file has the details.
 
 
-Installing DIBOL from the PATCH$ directory
-------------------------------------------
+## Installing DIBOL from the PATCH$ directory
 
 Not related to updates - but may be useful/informative and nostalgic!
 
@@ -73,8 +69,7 @@ working.  The details are
 [here](https://github.com/agn453/RSTS-E/blob/master/layered/dibol/dibol.txt).
 
 
-On the look-out for other Y2K updates for RSTS/E
-------------------------------------------------
+## On the look-out for other Y2K updates for RSTS/E
 
 I remember seeing a TK50 tape of further Y2K updates that was
 released by Mentec in around the 1999 timeframe.  Sadly, I don't have a
@@ -85,8 +80,52 @@ let me know.  It has EDT updates as well as date changes to the
 RT11.RTS and system utilities PIP.SAV, LINK.SAV, LIBR.SAV and SYSMAC.SML
 
 
-Background
-----------
+## Software
+
+I've previously posted to various mailing lists concerning some software
+that enhances your nostaligia for RSTS/E.  I'm adding some disk and a
+DECtape image to this repository in the software folder for the following -
+
+* PDP-11 Kermit (Kermit-11 T3.63 dated 3rd October 2006).  This is on an RL02
+disk image in RSTS Level 1.2 format (label KER363) that I used to re-create
+various versions of Kermit-11 (for RSTS/E, RSX-11M-Plus, P/OS and RT-11) using
+updates from Johnny Billquist's most recent updates (downloaded from the
+HECnet node MIM::).  You'll find the source files, batch build command files
+and binaries under PPN [11,6]
+
+```
+$ mount dl0: ker363
+$ dir dl0:[11,6]
+```
+
+* Dave Ahl's 101 BASIC computer games.  I've included a DECtape image (in
+DOS-11 format - directly readable by RSTS PIP), and two RL01 disk images (
+one in RSTS Level 1.2 format for RSTS/E V7 and later, and the other in the
+original RSTS Level 0.0 format for use under RSTS V04 to V06).  The disk
+files have been updated so the games can be played on recent versions of
+Basic-Plus.  The files are in two accounts [100,100] and [100,101].  Also
+included on this disk is a version of the original adventure game that
+was ported from a PDP-10 to run under PDP-11 Fortran by Kent Blackett and
+Bob Supnik.  You'll find this in the account [100,102].
+
+```
+$ mount dl0: games
+```
+
+* ZEMU - the Infocom Z-machine interpreter V2.5 (written by Johnny Billquist
+and Megan Gentry).  This version includes the capability to run various
+Infocom interactive adventure games (like ZORK1, ZORK2, ZORK3...) under RSTS/E
+using the RT11 run-time system.  This disk is in RT-11 format and the files
+need to be copied using the RSTS FIT command into an empty account on the
+system disk.  The ZEMU.DOC file describes how to install this software.
+
+```
+$ create/account sy:[11,10]/name="ZEMU 2.5"
+$ fit sy:[11,10]=dl0:*.*/rt
+```
+
+
+## Background
 
 I've been a User/Systems Programmer/System Manager/Computer Networking
 Engineer since my University days.  
