@@ -86,9 +86,11 @@ I've previously posted to various mailing lists concerning some software
 that enhances your nostaligia for RSTS/E.  I'm adding a few disk images and a
 DECtape image to the software folder for the following -
 
-* PDP-11 Kermit (Kermit-11 T3.63 dated 3rd October 2006).  This is on an RL02
-disk image in RSTS Level 1.2 format (label KER363) that I used to re-create
-various versions of Kermit-11 (for RSTS/E, RSX-11M-Plus, P/OS and RT-11).
+### PDP-11 Kermit (Kermit-11 T3.63 dated 3rd October 2006).
+
+This is on an RL02 disk image in RSTS Level 1.2 format (label
+KER363) that I used to re-create various versions of Kermit-11 (for
+RSTS/E, RSX-11M-Plus, P/OS and RT-11).
 Updates were downloaded from Johnny Billquist's HECnet node MIM:: and
 applied to the most recent official kermit sources.
 You'll find the source files, batch build command files
@@ -102,10 +104,10 @@ $ dir dl0:[11,6]
 A direct download link for the Kermit RL02 image is
 [rl02-ker363.dsk](https://github.com/agn453/RSTS-E/blob/master/software/rl02-ker363.dsk)
 
-* Dave Ahl's 101 BASIC computer games.  I've included a DECtape image (in
-DOS-11 format).  This is directly readable by a RSTS system that includes
-DECtape (DT device) device support.  Also there are two RL01 disk images,
-one in RSTS Level 1.2 format for RSTS/E V07 and later, and the other in the
+### Dave Ahl's 101 BASIC computer games.
+
+I've supplied two RL01 disk images,
+One in RSTS Level 1.2 format for RSTS/E V07 and later, and the other in the
 original RSTS Level 0.0 format for use under RSTS V04 to V06).  The disk
 files have been updated so the games can be played on recent versions of
 BASIC-Plus.  The files are in two accounts [100,100] and [100,101].  Also
@@ -117,6 +119,10 @@ Bob Supnik.  You'll find this in the account [100,102].
 $ mount dl0: games
 ```
 
+Also I've included a DECtape image (in
+DOS-11 format).  This is directly readable by a RSTS system that includes
+DECtape (DT device) device support.
+
 The RL01 GAMES disk image is
 [rl01-games.dsk](https://github.com/agn453/RSTS-E/blob/master/software/rl01-games.dsk)
 and the image for older versions of RSTS V04A to V06C is
@@ -124,7 +130,9 @@ and the image for older versions of RSTS V04A to V06C is
 An image of an original DECtape containing volume 1 of the games is
 [ahl_basic_games.dta](https://github.com/agn453/RSTS-E/blob/master/software/ahl_basic_games.dta).
 
-* ZEMU - the Infocom Z-machine interpreter V2.5 (written by Johnny Billquist
+### ZEMU - the Infocom Z-machine interpreter
+
+This is my V2.5 (originally written by Johnny Billquist
 and Megan Gentry).  This version includes the capability to run various
 Infocom interactive adventure games (like ZORK1, ZORK2, ZORK3...) under RSTS/E
 using the RT11 run-time system.  This disk is in RT-11 format and the files
