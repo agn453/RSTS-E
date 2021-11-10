@@ -43,6 +43,15 @@ line.
 [Update 25-Aug-2020] There's also a replacement NCP program to fix
 the "SHOW NODE" command.
 
+[Update 11-Nov-2021] The DECnet/E event logger (EVTLOG.TSK) has been
+updated again.  "There were two errors triggered by the fact that, as
+of 10-Nov-2021 the Julian-half-day value has the top bit set, making it
+look negative to PDP-11s.  One was in the conversion from RSTS internal
+format to Julian-half-day, triggering an ```%integer error``` message.
+The other was in decoding such Julian-half-day values when displaying
+events -- doing an ASR to convert half days to whole days is not a
+good idea..."
+
 You'll find these on his GitHub at
 
 https://github.com/pkoning2/decstuff
