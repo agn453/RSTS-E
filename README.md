@@ -260,7 +260,7 @@ that I developed whilst an undergraduate.  These were originally
 written in BASIC-PLUS - and the source files have been converted
 to a format now acceptable to both BASIC-PLUS and the PDP-11
 BASIC-PLUS-2 V2.7-00 compiler. (The original source files used
-continuation lines of a <LF> <CR> <NUL>, with <CR> <LF> at the
+continuation lines of a LF CR NUL, with CR LF at the
 end of each statement).
 
 Cross-assemblers for 
