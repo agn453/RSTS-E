@@ -251,6 +251,45 @@ also has information about Forth's handling of program SCREENs and
 files.
 
 
+## Microcomputer cross-assemblers etc.
+
+In the 
+[micros](https://github.com/agn453/RSTS-E/blob/master/micros)
+subdirectory, I've added a few of the microcomputer cross-assemblers
+that I developed whilst an undergraduate.  These were originally
+written in BASIC-PLUS - and the source files have been converted
+to a format now acceptable to both BASIC-PLUS and the PDP-11
+BASIC-PLUS-2 V2.7-00 compiler. (The original source files used
+continuation lines of a <LF> <CR> <NUL>, with <CR> <LF> at the
+end of each statement).
+
+Cross-assemblers for 
+
+* National Semiconductor SC/MP
+[SCMPCA.B2S](https://github.com/agn453/RSTS-E/blob/master/micros/SCMPCA.B2S)
+
+* Intel 8080/8085 with some Zilog Z80 op-codes (using Intel/TDL-style
+mnemonics)
+[X80.B2S](https://github.com/agn453/RSTS-E/blob/master/micros/X80.B2S)
+
+* MOS Technology 6502
+[X65.B2S](https://github.com/agn453/RSTS-E/blob/master/micros/X65.B2S)
+
+A dis-assembler for
+
+* National Semiconductor SC/MP
+[DISASM.B2S](https://github.com/agn453/RSTS-E/blob/master/micros/DISASM.B2S)
+
+and,
+
+* A program to convert hexadecimal output from the cross-assembler
+to an Intel HEX format absolute loader format file
+[INTEL.B2S](https://github.com/agn453/RSTS-E/blob/master/micros/INTEL.B2S)
+
+There are DCL command files to compile them, and I've included a binary
+task-image for each.
+
+
 ## Background
 
 I've been a User/Systems Programmer/System Manager/Computer Networking

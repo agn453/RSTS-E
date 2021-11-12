@@ -1,0 +1,221 @@
+
+		  Cross Assembler for 8080/8085   A.G. Nicholson
+		  ----------------------------------------------
+	    To enable  users of  8080  based systems to quickly  develop
+	their application programs - by  eliminating the tedious task of
+	hand assembling, I have written a cross assembler for the use of
+	interested persons.
+	    The cross assembler is written in DEC's Basic-plus(I) and is
+	available for use on a PDP-11  series processor using the RSTS/E
+	( V06B onwards ) operating system.
+	    The  following  describes some of its features and gives the
+	operating procedure using RSTS/E.
+
+	* General features :-
+	    Input to the assembler consists of lines of  mnemonics which
+	have the general form :-
+
+		label:	opcode argument(s)	; comments
+
+	    Each  of these  lines is  formed according  to the following
+	syntax rules :-
+
+		1) The label (if any) consists of up to six alphanumeric
+		   characters,  the first  of which  must be alphabetic,
+		   followed by a colon ":". (eg: "LOOP:")
+		2) The opcode  (instruction or assembler mnemonic)  must
+		   be followed by at least one space or tab character if
+		   an argument is to be present. Standard mnemonics  are
+		   used.
+
+		3) The  argument  (if required)   consists  of  a  valid
+		   expression, the form of which  is  determined  by the
+		   opcode. For 8080/8085 instructions, these are :-
+
+			a/ Input/Output instructions
+			    (IN,OUT)
+				dev
+					   (eg: "IN 0FB" )
+
+			b/ Primary memory reference
+			  (LDAX,STAX)
+				rp
+			  (LDA,STA,LHLD,SHLD)
+				addr
+					   (eg: "LHLD COUNT")
+
+			c/ Immediate
+			  (LXI rp,data16
+			   MVI reg,data  )
+					   (eg: "LXI HL,0" )
+
+			d/ Jumps
+			  (JMP,JC,JNC,JZ,JNZ,JP,JM,JPE,JPO)
+				addr
+					   ( eg: "JMP LOOP" )
+			  (PCHL)
+
+			e/ Calls and returns
+			  (CALL,CC,CNC,CZ,CNZ,CP,CM,CPE,CPO)
+				addr
+					   (eg: "CNC SUBR" )
+			  (RET,RC,RNC,RZ,RNZ,RP,RM,RPE,RPO)
+			f/ Immediate operate
+			  (ADI,ACI,SUI,SBI,ANI,XRI,ORI,CPI)
+				data
+					   ( eg: "CPI 1" )
+
+			g/ Move
+			  ( MOV reg,reg )
+					   ( eg: "MOV B,A" )
+
+			h/ Accumulator
+			  (ADD,ADC,SUB,SBB,ANA,XRA,ORA,CMP)
+				reg
+					   ( eg: "ADD M" )
+			  (DAD rp)
+					   ( eg: "DAD HL" )
+
+			i/ Register operate
+			  (INR,DCR)
+				reg
+					   ( eg: "DCR B" )
+			  (INX,DCX)
+				rp
+					   ( eg: "DCX DE" )
+			  (CMA,DAA,RLC,RRC,RAL,RAR)
+
+			j/ Stack
+			  (PUSH,POP)
+				rp
+					   ( eg: "PUSH BC" )
+
+			k/ Interrupt
+			  ( RST n )
+					   ( eg: "RST 7" )
+			  (EI,DI)
+		and	l/ Miscellaneous
+
+		Also included are the Z80 relative branches and exchange
+		instructions. 
+			(JR,JRNZ,JRZ,JRNC,JRC)
+					   ( eg: "JRNZ LOOP6" )
+			(EXX,EXAF)
+
+		    Where :-
+		  data,addr,data16 are arithmetic or logical expressions
+				consisting of numeric constants and / or
+				the operators :-
+					!	logical OR
+					%	logical NOT
+					&	logical AND
+					*	multiplication
+					+	addition
+					-	subtraction
+					/	integer division
+					H( )	high order byte
+					L( )	low order byte
+
+				Expressions  are  evaluated from left to
+				right, and may not contain parentheses.
+
+		  reg is one of the 8 bit registers (A,B,C,D,E,H,L,M)
+
+		  rp is one of the register pairs (BC,DE,HL,SP,PSW)
+
+		  n is a restart vector ( 0 to 7 )
+
+		    Some argument examples are :-
+
+			03E		the hexadecimal constant "3E"
+			^377		the octal constant "377"
+			'D'		the ascii value of "D"
+			-120		the  decimal  integer   constant
+					"-120". (the  range  allowed  is
+					-32768 to +32767)
+			L(ADDR)-1	the low order byte of the symbol
+					"ADDR", minus 1.
+
+		    The currently available assembler directives are :-
+
+			i) .BYTE or	assigns the byte  or double byte
+			   .DBYTE or	expressions  given  in the argu-
+			   .WORD	ment to current sequential addr-
+					esses. '.WORD' allocates two bytes
+					in 8080 address format, low byte
+					followed by the high byte.
+					(eg:  ".BYTE 0F,LABEL,'A'")
+
+			ii) =		assigns  to the  symbol  on  its
+					left the value of the expression
+					on its right.
+					(eg:  "VALUE=OFFSET-START+1")
+
+					A period "." is a special symbol
+					used  to  specify  the  location
+					counter.
+					(eg:  " .=01C0 ; start addr")
+
+			iii) .ASCII	translates the character  string
+			     .ASCIP	argument to ascii (  with parity
+					set on the last character in the
+					case  of  .ASCIP )  and  assigns
+					these  values  to  the   current
+					sequential address(es).
+					(eg:  ".ASCII 'TEXT STRING'" )
+
+			iv) .LIST	to enable/disable the listing of
+					the source program in  assembler
+					output. If the value of the expr
+					given is zero,  the  listing  is
+					disabled, else it is enabled.
+					(eg:  ".LIST 0 ; no list")
+
+			v) .BLKB	reserves  the  number  of  bytes
+					given in the argument expression
+					(eg: ".BLKB 0100 ; buffer area")
+
+			vi) .END	to  tell  the  assembler  it has
+					reached  the end of your  source
+					program.  This  statement   must
+					be included as the last line  of
+					source.
+
+		4) The (optional) comments are proceeded by a semi-colon
+		   ";" and may contain any other  character. The  label,
+		   opcode  and  argument  fields  may be  omitted  for a
+		   comment line.   A  line with a dollar "$" sign as the
+		   first  character  is  treated as  a comment line  and
+		   is  printed to the listing file minus the "$" sign.
+
+	* Use of assembler on RSTS/E :-
+
+	After logging on to the system, perform the following steps :-
+
+		(1) Enter the source  program  into a file on the system
+		using the $PIP or $EDIT programs or the "CREATE" command
+
+		(2) Run the cross assembler by typing "RUN !X80",
+		responding to the "#" sign with a command string of  the
+		form:  eg:  LIST=PROG/switch(es)
+		which directs the listing to the file "LIST.LST" from the
+		source file "PROG. SRC". The switch(es) are  optional but
+		  /E  specifies an errors only listing
+		  /O  specifies  an object module output, in the  format
+		      of a hexadecimal dump in ASCII, 16 bytes/line.
+		       (this is useful for later punching of paper tape)
+		  /S  specifies that the sorted symbol table be printed.
+		Only specifying the source file ( eg: PROG )  causes all
+		output to the user's terminal.
+
+		(3) If any errors are detected, it is neccessary to edit
+		the source file using the  $EDIT  program  or the "EDIT"
+		command, and repeat step 2 above  until  no  errors  are
+		detected.
+
+	    Any queries ? - don't hesitate to contact Tony Nicholson c/o
+	Electrical Engineering Department, for advice or help with  your
+	problems regarding the cross assembler. You might  also  want to
+	attend  on the second and fourth Mondays of the month in Physics
+	building room G12 at 7pm, when the Newcastle Microcomputer  Club
+	meets.

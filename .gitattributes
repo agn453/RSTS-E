@@ -8,10 +8,14 @@ README.md text eol=crlf
 *.pat text eof=crlf linguist-language=DIGITAL Command Language
 *.txt text eof=crlf
 *.tsk binary
+*.TSK binary
 *.jpeg binary
 *.txt text eof=crlf
 *.mac text eol=crlf linguist-language=Assembly
 *.com text eol=crlf
+*.COM text eol=crlf
+*.HLP text eol=crlf
+*.B2S text eol=crlf linguist-language=BASIC
 *.obj binary
 *.zip binary
 *.pdf binary
