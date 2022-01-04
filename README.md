@@ -52,7 +52,17 @@ The other was in decoding such Julian-half-day values when displaying
 events -- doing an ASR to convert half days to whole days is not a
 good idea..."
 
-You'll find these on his GitHub at
+[Update 05-Jan-2022] A shutdown patch has been added to Paul Koning's
+repository in patches/shut.cmd.  This resolves a problem in RSTS V10.1
+that seems to come and go with no clear pattern.  The failure is a crash,
+sometimes a halt, during system shutdown.  The cause was a write to the
+wrong location when removing the DCL runtime system, because of a
+register not being set before that action.
+
+This shutdown patch can be installed with ONLPAT; it takes effect
+immediately (because it patches a non-resident overlay).
+
+You'll find Paul's patches on his GitHub repository at
 
 https://github.com/pkoning2/decstuff
 
