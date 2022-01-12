@@ -145,7 +145,8 @@ DECtape (DT device) device support.
 The RL01 GAMES disk image is
 [rl01-games.dsk](https://github.com/agn453/RSTS-E/blob/master/software/rl01-games.dsk)
 and the image for older versions of RSTS V04A to V06C is
-[rl01-games-rsts0-0.dsk](https://github.com/agn453/RSTS-E/blob/master/software/rl01-games-rsts0-0.dsk).
+[rl01-games-rsts0-0.dsk](https://github.com/agn453/RSTS-E/blob/master/software/rl01-games-rsts0-0.dsk) (an RL01) or
+[rk05-games-rsts0-0.dsk](https://github.com/agn453/RSTS-E/blob/master/software/rk05-games-rsts0-0.dsk) (an RK05).
 An image of an original DECtape containing volume 1 of the games is
 [ahl_basic_games.dta](https://github.com/agn453/RSTS-E/blob/master/software/ahl_basic_games.dta).
 
