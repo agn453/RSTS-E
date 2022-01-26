@@ -126,8 +126,8 @@ A direct download link for the Kermit RL02 image is
 ### Dave Ahl's 101 BASIC computer games.
 
 I've supplied two RL01 disk images,
-One in RSTS Level 1.2 format for RSTS/E V07 and later, and the other in the
-original RSTS Level 0.0 format for use under RSTS V04 to V06).  The disk
+One in RSTS Level 1.2 format for RSTS/E V8.0 and later, and the other in the
+original RSTS Level 0.0 format for use under RSTS V04 to V07).  The disk
 files have been updated so the games can be played on recent versions of
 BASIC-Plus.  The files are in two accounts [100,100] and [100,101].  Also
 included on this disk is a copy of the original adventure game that
@@ -144,7 +144,7 @@ DECtape (DT device) device support.
 
 The RL01 GAMES disk image is
 [rl01-games.dsk](https://github.com/agn453/RSTS-E/blob/master/software/rl01-games.dsk)
-and the image for older versions of RSTS V04A to V06C is
+and the image for older versions of RSTS V04A to V07 is
 [rl01-games-rsts0-0.dsk](https://github.com/agn453/RSTS-E/blob/master/software/rl01-games-rsts0-0.dsk) (an RL01) or
 [rk05-games-rsts0-0.dsk](https://github.com/agn453/RSTS-E/blob/master/software/rk05-games-rsts0-0.dsk) (an RK05).
 An image of an original DECtape containing volume 1 of the games is
