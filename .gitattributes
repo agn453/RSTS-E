@@ -5,6 +5,7 @@ LICENSE text eol=crlf
 README.md text eol=crlf
 *.diff text eof=crlf
 *.doc text eof=crlf
+*.ini text eof=crlf
 *.pat text eof=crlf linguist-language=DIGITAL Command Language
 *.txt text eof=crlf
 *.tsk binary
@@ -18,6 +19,7 @@ README.md text eol=crlf
 *.B2S text eol=crlf linguist-language=BASIC
 *.obj binary
 *.zip binary
+*.bz2 binary
 *.pdf binary
 *.dsk binary
 *.dta binary
