@@ -12,9 +12,12 @@ for RSTS/E V10.1 and I started investigations into fixing some Y2K issues
 that I had found while tinkering.
 
 I've included a prebuilt system disk image that supports DECnet and LAT
-in the prebuilt folder, along with sample configuration files for both
+in the
+[prebuilt](https://github.com/agn453/RSTS-E/blob/master/prebuilt)
+folder, along with sample configuration files for both
 SIMH PDP11 and John Wilson's E11 PDP-11 emulators.  The accompanying
-README.md has a brief description on how to use this disk image.
+[prebuilt/README.md](https://github.com/agn453/RSTS-E/blob/master/prebuilt/README.md)
+has a brief description on how to use this disk image.
 
 
 ## FIT
