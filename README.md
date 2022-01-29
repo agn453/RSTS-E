@@ -19,6 +19,12 @@ SIMH PDP11 and John Wilson's E11 PDP-11 emulators.  The accompanying
 [prebuilt/README.md](https://github.com/agn453/RSTS-E/blob/master/prebuilt/README.md)
 has a brief description on how to use this disk image.
 
+I've also zipped up a complete set of the RSTS/E V10.1 documentation.
+It's a very large file (1.68Gb) of PDF files and can be downloaded
+from my Google Drive at
+
+https://drive.google.com/file/d/1-cZsyJmAzsTWDDu5iPlD_o9_rYwahaGs/view?usp=sharing
+
 
 ## FIT
 

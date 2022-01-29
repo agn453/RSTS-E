@@ -47,7 +47,7 @@ FORTRAN-IV, FORTRAN-77, BASIC-PLUS and BASIC-PLUS2 are also available,
 along with two version of Kermit (KERMIT and KRT).
 
 Installation logs and files are in separate PPNs - all have the
-password set to MANAGER.  Use the following command to see which one
+password set to ```MANAGER```.  Use the following command to see which one
 is which -
 
 ```
