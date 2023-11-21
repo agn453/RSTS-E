@@ -308,6 +308,24 @@ There are DCL command files to compile them, and I've included a binary
 task-image for each.
 
 
+## Paul Koning's Ethernet driver patches and broadcast NTP client
+
+Paul Koning has released two more updates for RSTS/E V10.1.
+
+The first are patches to the Ethernet DEUNA and DEQNA drivers to fix
+user I/O and allow unit numbers beyond the first.  See the xedvr.cmd and
+xhdvr.cmd files in the patches directory at
+https://github.com/pkoning2/decstuff
+
+The second is a broadcast NTP client that will synchronize the system clock
+with a Network Time Protocol server on the local Ethernet LAN (when it's
+configured to send out broadcast packets on UDP port 123).  It includes
+handling of timezone rules so that the right thing will happen at daylight
+savings time changeovers.
+
+See https://github.com/pkoning2/decstuff/tree/master/ntp for details.
+
+
 ## Background
 
 I've been a User/Systems Programmer/System Manager/Computer Networking
